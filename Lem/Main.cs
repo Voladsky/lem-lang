@@ -39,6 +39,13 @@ namespace Lem
             );
             var interpret = new InterpretVisitor();
             progr.Visit(interpret);
+            var lex = new Lexer("a = 3; if\na<2\n\nthen a = 0 else a = 23;\n print(a * 223 + 10) ");
+            Token t = null;
+            do
+            {
+                t = lex.NextToken();
+                Console.WriteLine($"{t.pos},{t.type},{t.value}");
+            } while (t.type != TokenType.Eof);
         }
     }
 }
