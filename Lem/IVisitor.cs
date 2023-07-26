@@ -11,8 +11,8 @@ namespace Lem
         T VisitNode(Node bin);
         T VisitExprNode(ExprNode bin);
         T VisitStatementNode(StatementNode bin);
-        T VisitBinOp(BinOp bin);
-        T VisitStatementList(StatementList stl);
+        T VisitBinOp(BinOpNode bin);
+        T VisitStatementList(StatementListNode stl);
         T VisitExprList(ExprListNode exprlist);
         T VisitInt(IntNode n);
         T VisitDouble(DoubleNode n);

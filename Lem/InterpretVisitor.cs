@@ -11,7 +11,7 @@ namespace Lem
         public object VisitNode(Node bin) => null;
         public object VisitStatementNode(StatementNode st) => null;
         public object VisitExprNode(ExprNode bin) => null;
-        public object VisitBinOp(BinOp bin)
+        public object VisitBinOp(BinOpNode bin)
         {
             var l = bin.Left.Visit(this);
             var r = bin.Right.Visit(this);
@@ -24,12 +24,15 @@ namespace Lem
                 case "<":
                     result = (double)l < (double)r;
                     break;
+                case "*":
+                    result = (double)l * (double)r;
+                    break;
                 default:
                     throw new InvalidOperationException("Not implemented operator!");
             }
             return result;
         }
-        public object VisitStatementList(StatementList stl)
+        public object VisitStatementList(StatementListNode stl)
         {
             foreach (var s in stl.lst)
                 s.Visit(this);

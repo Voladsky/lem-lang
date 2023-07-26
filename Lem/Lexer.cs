@@ -56,7 +56,7 @@ namespace Lem
                 while (char.IsDigit(PeekChar()))
                     NextChar();
                 var val = code.Substring(start, cur - start);
-                var re = double.Parse(val);
+                var re = double.Parse(val, System.Globalization.CultureInfo.InvariantCulture.NumberFormat);
                 return new Token(TokenType.DoubleLiteral, startPos, re);
             }
             else

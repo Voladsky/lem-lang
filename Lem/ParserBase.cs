@@ -14,6 +14,7 @@ namespace Lem
         public ParserBase(Lexer lex)
         {
             this.lex = lex;
+            NextLexem();
 
         }
         public Token NextLexem()

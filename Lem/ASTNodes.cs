@@ -18,11 +18,11 @@ namespace Lem
     {
         public override T Visit<T>(IVisitor<T> v) => v.VisitStatementNode(this);
     }
-    internal class BinOp: ExprNode
+    internal class BinOpNode: ExprNode
     {
         public ExprNode Left, Right;
         public string Op;
-        public BinOp(ExprNode left, ExprNode right, string op)
+        public BinOpNode(ExprNode left, ExprNode right, string op)
         {
             Left = left;
             Right = right;
@@ -30,7 +30,7 @@ namespace Lem
         }
         public override T Visit<T>(IVisitor<T> v) => v.VisitBinOp(this);
     }
-    internal class StatementList: StatementNode
+    internal class StatementListNode: StatementNode
     {
         public List<StatementNode> lst = new List<StatementNode>();
         public void Add(StatementNode st) => lst.Add(st);
@@ -107,7 +107,7 @@ namespace Lem
     }
     internal static class NodeCreation
     {
-        public static BinOp Bin(ExprNode left, string op, ExprNode right) => new BinOp(left, right, op);
+        public static BinOpNode Bin(ExprNode left, string op, ExprNode right) => new BinOpNode(left, right, op);
         public static AssignNode Ass(IdNode ident, ExprNode expr) => new AssignNode(ident, expr);
         public static IdNode Id(string name) => new IdNode(name);
         public static DoubleNode Num(double value) => new DoubleNode(value);
@@ -116,7 +116,7 @@ namespace Lem
         public static WhileNode Wh(ExprNode cond, StatementNode body) => new WhileNode(cond, body);
         public static StatementNode StL(params StatementNode[] ss)
         {
-            var lst = new StatementList();
+            var lst = new StatementListNode();
             lst.lst = ss.ToList();
             return lst;
         }
