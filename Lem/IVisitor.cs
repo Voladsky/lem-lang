@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lem
 {
-    internal interface IVisitor<T>
+    public interface IVisitor<T>
     {
         T VisitNode(Node bin);
         T VisitExprNode(ExprNode bin);

@@ -1,0 +1,21 @@
+a = 5;
+
+for i in [1, 6] {
+   print(a);
+   a = a + 1;
+}
+
+while a > 5 {
+   print(a);
+   a = a - 1;
+}
+
+if (a < 5) {
+   print(a);
+}
+else {
+   print(5 - a);
+}
+
+
+

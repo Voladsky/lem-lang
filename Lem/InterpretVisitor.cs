@@ -21,8 +21,14 @@ namespace Lem
                 case "+":
                     result = (double)l + (double)r;
                     break;
+                case "-":
+                    result = (double)l - (double)r;
+                    break;
                 case "<":
                     result = (double)l < (double)r;
+                    break;
+                case ">":
+                    result = (double)l > (double)r;
                     break;
                 case "*":
                     result = (double)l * (double)r;

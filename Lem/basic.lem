@@ -1,6 +1,12 @@
 print(1234);
 x = 1.0;
-while x < 10.0 do {
-	print(x);
-	x = x + 1.0
+while (x < 10.0) {
+    print(x);
+    x = x + 1.0;
+}
+if x > 10.0 then {
+    print(x);
+}
+else {
+    print(x + 10.0);
 }
