@@ -75,7 +75,7 @@ namespace Lem
     {
         public ExprNode Condition;
         public StatementNode ThenStat, ElseStat;
-        public IfNode(ExprNode condition, StatementListNode thenStat, StatementListNode elseStat)
+        public IfNode(ExprNode condition, StatementNode thenStat, StatementNode elseStat)
         {
             Condition = condition;
             ThenStat = thenStat;
@@ -105,27 +105,29 @@ namespace Lem
         }
         public override T Visit<T>(IVisitor<T> v) => v.VisitProcCall(this);
     }
-    public static class NodeCreation
+
+    public class RangeNode: Node
     {
-        public static BinOpNode Bin(ExprNode left, string op, ExprNode right) => new BinOpNode(left, right, op);
-        public static AssignNode Ass(IdNode ident, ExprNode expr) => new AssignNode(ident, expr);
-        public static IdNode Id(string name) => new IdNode(name);
-        public static DoubleNode Num(double value) => new DoubleNode(value);
-        public static IntNode Num(int value) => new IntNode(value);
-        public static IfNode Iff(ExprNode cond, StatementListNode th, StatementListNode el) => new IfNode(cond, th, el);
-        public static WhileNode Wh(ExprNode cond, StatementListNode body) => new WhileNode(cond, body);
-        public static StatementNode StL(params StatementNode[] ss)
+        public ExprNode LeftBorder;
+        public ExprNode RightBorder;
+        public RangeNode(ExprNode leftBorder, ExprNode rightBorder)
         {
-            var lst = new StatementListNode();
-            lst.lst = ss.ToList();
-            return lst;
+            LeftBorder = leftBorder;
+            RightBorder = rightBorder;
         }
-        public static ExprListNode ExL(params ExprNode[] ss)
+        public override T Visit<T>(IVisitor<T> v) => v.VisitRangeNode(this);
+    }
+    public class ForNode: StatementNode
+    {
+        public IdNode IteratedId;
+        public RangeNode Range;
+        public StatementNode Stat;
+        public ForNode(IdNode iteratedId, RangeNode range, StatementNode stat)
         {
-            var lst = new ExprListNode();
-            lst.lst = ss.ToList();
-            return lst;
+            IteratedId = iteratedId;
+            Range = range;
+            Stat = stat;
         }
-        public static ProcCallNode ProcCall(IdNode name, ExprListNode exlist) => new ProcCallNode(name, exlist);
+        public override T Visit<T>(IVisitor<T> v) => v.VisitForNode(this);
     }
 }

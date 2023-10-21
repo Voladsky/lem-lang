@@ -1,12 +1,12 @@
-print(1234);
-x = 1.0;
-while (x < 10.0) {
-    print(x);
-    x = x + 1.0;
+a = 0.0;
+b = 1.0;
+n = 15.0;
+for i in [1.0; n] {
+    print(b);
+    t = a + b;
+    a = b;
+    b = t;
 }
-if x > 10.0 then {
-    print(x);
-}
-else {
-    print(x + 10.0);
+if b - 100.0 > 0.0 {
+   print(n);
 }

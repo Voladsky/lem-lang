@@ -75,5 +75,22 @@ namespace Lem
                 Console.WriteLine(f.Pars.lst[0].Visit(this));
             return null;
         }
+        public object VisitRangeNode(RangeNode r)
+        {
+            return (r.LeftBorder.Visit(this), r.RightBorder.Visit(this));
+        }
+        public object VisitForNode(ForNode forn)
+        {
+            var borders = (ValueTuple<object, object>)forn.Range.Visit(this);
+            var left = (double)borders.Item1;
+            var right = (double)borders.Item2;
+            SymTable.Table[forn.IteratedId.Name] = borders.Item1;
+            for (double i = left; i < right; ++i)
+            {
+                forn.Stat.Visit(this);
+                SymTable.Table[forn.IteratedId.Name] = (double)SymTable.Table[forn.IteratedId.Name] + 1;
+            }
+            return null;
+        }
     }
 }

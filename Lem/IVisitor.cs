@@ -21,6 +21,7 @@ namespace Lem
         T VisitIf(IfNode ifn);
         T VisitWhile(WhileNode whn);
         T VisitProcCall(ProcCallNode f);
-
+        T VisitRangeNode(RangeNode r);
+        T VisitForNode(ForNode forn);
     }
 }
